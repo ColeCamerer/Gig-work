@@ -42,5 +42,22 @@
     "password": "your-gmail-app-password",
     "from_email": "your@gmail.com",
     "from_name": "Cole"
+  },
+
+  "imap": {
+    "host": "imap.gmail.com",
+    "port": 993,
+    "username": "your@gmail.com",
+    "password": "your-gmail-app-password"
+  },
+
+  "automation": {
+    "auto_qualify_after_scan": true,
+    "auto_apply_after_qualify": true,
+    "auto_draft_deliverable_on_reply": true,
+    "require_human_send_deliverable": true,
+    "require_human_send_pitch": false,
+    "scan_interval_minutes": 60,
+    "_note": "require_human_send_deliverable stays true on purpose: never auto-send work or touch payment without you. Pitches can auto-send (require_human_send_pitch=false) once SMTP is set and you trust the output."
   }
 }
