@@ -1,0 +1,31 @@
+{
+  "id": "20260628-1015-chicago-product-desc",
+  "status": "applied",
+  "type": "TEXT",
+  "subtype": "PRODUCT_COPY",
+  "url": "https://chicago.craigslist.org/chc/wrg/d/product-descriptions/7700002.html",
+  "title": "Product descriptions for 5 candle products - $50",
+  "description": "Etsy shop owner. Need SEO-friendly product descriptions for 5 soy candle scents. About 80-100 words each. Cozy, sensory language. I'll send you the scent names and notes. $50 for all 5.",
+  "price": 50,
+  "price_stated": true,
+  "score": 15,
+  "score_breakdown": {
+    "ai_solvability": 6,
+    "payout": 4,
+    "scope_clarity": 3,
+    "time_sensitivity": 2
+  },
+  "why_apply": "Clear deliverable (5 x 80-100 word descriptions), fair price. Needs scent names from client first.",
+  "red_flags": [
+    "Requires scent names/notes from client before writing"
+  ],
+  "estimated_time_minutes": 4,
+  "fulfillment_notes": "5 soy candle descriptions, 80-100 words each, cozy sensory + SEO. Ask client for scent names/notes in pitch; can draft placeholders if delayed.",
+  "city": "chicago",
+  "posted": "2026-06-28T07:00:00Z",
+  "qualified_at": "2026-06-28T10:21:50Z",
+  "pitch_sent": "Subject: Re: Product descriptions for 5 candle products\n\nHey,\n\nI write product descriptions regularly \u2014 SEO-friendly with the cozy, sensory feel that works for candles. Can have all 5 done by tomorrow.\n\nSend over the scent names and any notes you've got and I'll get started. Want me to send the first one as a sample before doing the rest?\n\n\u2014 Cole",
+  "sent_to": "reply via Craigslist listing email",
+  "sent_at": "2026-06-28T10:22:21Z",
+  "send_method": "manual"
+}
