@@ -1,8 +1,40 @@
 {
-  "cities": ["boston", "newyork", "chicago", "losangeles", "sfbay", "seattle", "austin", "denver", "atlanta", "miami"],
-  "min_price": 25,
-  "max_age_hours": 24,
-  "categories": ["wrg", "crg", "cpg"],
+  "identity": {
+    "name": "Cole",
+    "positioning": "ai_assisted_disclosed",
+    "_positioning_options": "ai_assisted_disclosed = lead with 'fast AI-assisted, human-edited' (no refund risk, fewer replies but cleaner). human = present as a normal freelancer (more replies, must edit work heavily so it reads human and stands behind it).",
+    "portfolio_url": "",
+    "samples_folder": "gigs/samples",
+    "payment": {
+      "paypal": "",
+      "venmo": "",
+      "preferred": "paypal"
+    },
+    "reddit_username": ""
+  },
+
+  "sending": {
+    "max_applications_per_day": 8,
+    "max_applications_per_source_per_day": 4,
+    "min_minutes_between_sends": 12,
+    "max_minutes_between_sends": 45,
+    "active_hours_local": [8, 21],
+    "send_as_plain_text": true,
+    "no_links_in_first_contact": true,
+    "one_followup_after_hours": 48,
+    "stop_after_followups": 1
+  },
+
+  "targeting": {
+    "cities": ["boston", "newyork", "chicago", "losangeles", "sfbay", "seattle", "austin", "denver", "atlanta", "miami"],
+    "categories": ["wrg", "crg", "cpg"],
+    "reddit_subs": ["forhire", "slavelabour", "DesignJobs"],
+    "min_price": 30,
+    "max_age_hours": 12,
+    "prefer_age_hours": 3,
+    "min_winnability_score": 14
+  },
+
   "smtp": {
     "host": "smtp.gmail.com",
     "port": 465,
