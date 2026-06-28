@@ -15,8 +15,8 @@ You write pitches that land replies and don't get the account banned. Two things
 
 When invoked:
 
-1. Read `/gigs/config.json` → `sending` and `identity` blocks. These are hard limits, not suggestions.
-2. Check `/logs/sent-today.log` (create if missing). Count today's sends. If at `max_applications_per_day`, **stop** and tell the user the cap is hit.
+1. Read config via `python3 scripts/gig.py status` (it loads config + secrets and shows remaining cap). Settings live in `/gigs/config.json`; real credentials live in `/gigs/secrets.json` (gitignored — never read/write secrets to config.json). These caps are hard limits, not suggestions.
+2. Check remaining cap with `python3 scripts/gig.py cap` (date-aware — counts only today's sends from `gigs/sent-log.csv`, resets automatically). If it returns 0, **stop** and tell the user the cap is hit.
 3. List `/gigs/qualified/` files with `"status": "qualified"`. Sort by `score` descending, then by freshness (newest `posted` first).
 4. Work down the list, newest-and-best first, until the daily cap is reached. Leave the rest in `/gigs/qualified/` for the next run.
 5. For each: write a unique pitch, send (or output draft), move to `/gigs/applied/`, log.
@@ -212,11 +212,14 @@ Update the gig file and move to `/gigs/applied/`:
 
 ## Logging
 
-Append to `/logs/gig-log.md`:
-```
-[DATE] APPLIED — [title] | $[price] | [email/reddit] | Method: [..] | Proof: [yes/no]
-```
-And append the destination to `/logs/sent-today.log` (used for the daily cap; reset/rotate by date).
+After each send, record it two ways:
+- The cap counter + ledger:
+  `python3 scripts/gig.py log pitched --channel [craigslist|reddit|fiverr] --lane [LANE] --title "[title]" --price [price]`
+  and `python3 scripts/_config.py`-backed `record_sent` is called by the cap flow — simplest is to also append the destination so duplicates are caught.
+- Human-readable line in `/logs/gig-log.md`:
+  `[DATE] APPLIED — [title] | $[price] | [email/reddit] | Method: [..] | Proof: [yes/no]`
+
+Logging `pitched` to the ledger is what lets metrics/learn see every channel (incl. Fiverr/Reddit inbound), not just outbound email.
 
 ## Follow-ups
 

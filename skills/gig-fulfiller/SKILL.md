@@ -79,6 +79,14 @@ Then the content.
 
 If any answer is no, fix that part. Don't save mediocre work — mediocre work is how the account dies.
 
+### Red-team review (separate pass — do NOT skip)
+
+The quality gate above is graded by the same mind that wrote the piece, so it has blind spots. Run a second, distinct pass with a hostile lens before saving:
+
+> Re-read the deliverable as a skeptical client who is *looking for a reason not to pay.* Where is it generic? Where does it sound AI? What did they ask for that's missing or thin? What would make them request a revision?
+
+Write down the 2–3 weakest points that pass finds, fix them, then save. This is a fresh critical read, not a re-skim — if you can, treat it as a different reviewer than the writer. It's the cheapest insurance against a refund or a bad review on a young account.
+
 ---
 
 ## DESIGN PATH
@@ -149,7 +157,10 @@ Move a copy of the gig JSON to `/gigs/delivered/[job-id]/gig.json` with:
 ```json
 {"status": "delivered", "delivered_at": "...", "delivered_path": "...", "fulfillment_time_minutes": N, "notes": "..."}
 ```
-Log:
+Log to the ledger (so all channels feed metrics/learn) and the human log:
+```
+python3 scripts/gig.py log delivered --channel [..] --lane [LANE] --title "[title]" --price [price]
+```
 ```
 [DATE] DELIVERED — [title] | $[price] | [subtype] | [N] min | [path]
 ```
@@ -160,5 +171,5 @@ Log:
 ## Revisions
 Client asks for changes → re-read original, change only what they asked, save as `-v2`, update README. Fast, gracious revisions are how you turn a one-off into a repeat client and a review.
 
-## After payment: ask for the review
-Once paid, prompt the user to ask the client for a short review/testimonial. Three to five real reviews is the single thing that takes reply rate from ~2% to ~20%. Track collected reviews in `gigs/reviews.md` to reuse (with permission) as social proof later.
+## After payment: log it + ask for the review
+When the user confirms payment, log it (`python3 scripts/gig.py log paid --channel [..] --lane [LANE] --title "[title]" --price [amount]`) — this is what makes $/pitch and earnings real in the dashboards. Then prompt the user to ask the client for a short review/testimonial. Three to five real reviews is the single thing that takes reply rate from ~2% to ~20%. Track collected reviews in `gigs/reviews.md` to reuse (with permission) as social proof later.

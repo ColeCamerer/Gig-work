@@ -13,9 +13,13 @@ it tells the operator to do more of what pays and stop what doesn't.
 stdlib only.  Usage: python3 scripts/learn.py
 """
 import os
+import sys
 import json
 import glob
 from collections import defaultdict
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _config as C  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APPLIED = os.path.join(ROOT, "gigs", "applied")
@@ -38,6 +42,27 @@ def load_records():
             recs.append(json.load(open(p)))
         except Exception:
             pass
+    # Fold in the unified ledger (Fiverr/Reddit/Craigslist inbound + outbound).
+    # Collapse each (channel,lane,title) to its most-advanced stage.
+    led = {}
+    stage_status = {"pitched": "applied", "replied": "replied",
+                    "delivered": "delivered", "paid": "paid", "lost": "applied"}
+    for row in C.ledger_rows():
+        key = (row.get("channel"), row.get("lane"), row.get("title"))
+        status = stage_status.get(row.get("stage"), "applied")
+        try:
+            price = int(row.get("price") or 0)
+        except ValueError:
+            price = 0
+        rec = {"id": "ledger:" + "|".join(str(k) for k in key),
+               "subtype": row.get("lane"), "type": row.get("lane"),
+               "price": price, "status": status,
+               "city": "reddit" if row.get("channel") == "reddit" else row.get("channel"),
+               "category": row.get("channel")}
+        if key not in led or _rank(rec) > _rank(led[key]):
+            led[key] = rec
+    recs.extend(led.values())
+
     # de-dupe by id (a gig may exist in both applied and delivered)
     by_id = {}
     for r in recs:
@@ -65,8 +90,11 @@ def price_band(p):
 
 
 def platform_of(r):
+    cat = r.get("category")
     if r.get("city") == "reddit" or r.get("contact") == "reddit_dm":
-        return "reddit/" + r.get("category", "?")
+        return "reddit/" + (cat or "?")
+    if cat and cat not in ("wrg", "crg", "cpg"):
+        return cat  # fiverr, upwork, etc. from the ledger
     return "craigslist"
 
 

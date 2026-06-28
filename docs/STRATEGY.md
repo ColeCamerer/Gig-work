@@ -29,6 +29,9 @@ This is a **legit freelancing side-hustle accelerated by AI**, not passive incom
 
 ## Don't get flagged — account setup
 
+**Credentials (do this first — security):**
+- Put real passwords ONLY in `gigs/secrets.json` (copy from `gigs/secrets.example.json`). It is gitignored, so it never gets pushed to GitHub. `config.json` is tracked — never put real creds there. Env vars (`GIG_SMTP_PASSWORD`, etc.) override both.
+
 **Email (Craigslist):**
 - Use an **aged Gmail** (weeks+ old, with some normal sent history). A fresh account blasting identical mail gets throttled same-day.
 - Let the applier pace you (it caps daily sends, spaces them out, sends only in active hours, and never reuses a body). Don't override the caps to "send more" — that's the fast path to a dead account.

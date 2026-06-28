@@ -1,0 +1,11 @@
+# Secrets — never commit real credentials
+gigs/secrets.json
+.env
+
+# Daily send counter (local runtime state)
+logs/sent-today.log
+
+# Python
+__pycache__/
+*.pyc
+.last_run_day

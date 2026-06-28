@@ -30,7 +30,8 @@ When invoked for a one-shot run:
 1. **Pre-flight check.** Read `/gigs/config.json`. Confirm:
    - SMTP set with real values? (if not, pitches will be drafts, not sent)
    - IMAP set? (if not, reply-watching is manual)
-   - Daily cap remaining? (read `/logs/sent-today.log`)
+   - Daily cap remaining? (`python3 scripts/gig.py cap` — date-aware, auto-resets)
+   - Credentials live in `gigs/secrets.json` (gitignored), not config.json
    Report what's live vs. manual before doing anything.
 2. **Scan** → save to `/gigs/raw/`.
 3. **Qualify** (if enabled) → top gigs to `/gigs/qualified/`, scams killed.

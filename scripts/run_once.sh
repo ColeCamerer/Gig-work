@@ -12,13 +12,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-# Reset the daily send-cap counter at the first run of a new day.
-TODAY=$(date +%Y-%m-%d)
-STAMP=".last_run_day"
-if [ ! -f "$STAMP" ] || [ "$(cat "$STAMP" 2>/dev/null)" != "$TODAY" ]; then
-  : > logs/sent-today.log
-  echo "$TODAY" > "$STAMP"
-fi
+# The daily send cap is date-aware (scripts/_config.py counts only today's rows
+# in gigs/sent-log.csv), so no counter reset is needed here.
 
 # Drive the orchestrator. -p runs a single headless prompt.
 claude -p "run the gig pipeline (single pass). Respect all sending caps and the human-gated steps. End with the standard pipeline report." \

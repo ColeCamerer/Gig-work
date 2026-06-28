@@ -81,8 +81,9 @@ if that's the vibe i can do the whole thing by [timeframe]. want me to?
 
 Once they've agreed deliverable + price + terms:
 1. Update the gig file in `/gigs/applied/` (or wherever it lives): set `status: "accepted"`, add `agreed_price`, `agreed_scope`, `payment_terms`.
-2. Trigger the fulfiller to produce the work.
-3. Log: `[DATE] CLOSED — [title] | $[agreed] | terms: [..]` and append a `REPLIED` line if not already logged (so metrics/learn count the reply).
+2. Log the reply to the ledger if not already (so it counts for every channel, incl. Fiverr/Reddit): `python3 scripts/gig.py log replied --channel [..] --lane [LANE] --title "[title]" --price [agreed]`.
+3. Trigger the fulfiller to produce the work.
+4. Human log: `[DATE] CLOSED — [title] | $[agreed] | terms: [..]`.
 
 ## After closing
 

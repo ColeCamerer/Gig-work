@@ -21,14 +21,15 @@ import sys
 from email.header import decode_header
 from datetime import datetime, timezone
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _config as C  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APPLIED = os.path.join(ROOT, "gigs", "applied")
-CONFIG = os.path.join(ROOT, "gigs", "config.json")
 
 
 def load_config():
-    with open(CONFIG) as f:
-        return json.load(f)
+    return C.load_config()
 
 
 def norm_addr(s):
@@ -91,8 +92,8 @@ def main():
         return
 
     imap = cfg.get("imap", {})
-    if not imap or imap.get("username", "").startswith("your@") or not imap.get("password") or imap.get("password", "").startswith("your-"):
-        print(json.dumps({"replies": [], "errors": ["IMAP not configured — set gigs/config.json imap block. Reply-watching is manual until then."]}))
+    if not C.imap_ready(cfg):
+        print(json.dumps({"replies": [], "errors": ["IMAP not configured — set gigs/secrets.json imap block (not config.json). Reply-watching is manual until then."]}))
         return
 
     idx = applied_index()
@@ -137,6 +138,14 @@ def main():
             }
             with open(path, "w") as f:
                 json.dump(g, f, indent=2)
+
+            # feed the learning loop: a detected reply is a 'replied' ledger event
+            try:
+                C.record_ledger("replied", "craigslist",
+                                g.get("subtype") or g.get("type") or "?",
+                                g.get("title") or "", g.get("price") or 0)
+            except Exception:
+                pass
 
             replies.append({
                 "gig_id": g.get("id"),

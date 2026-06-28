@@ -11,8 +11,12 @@ stdlib only.  Usage: python3 scripts/metrics.py
 """
 import os
 import re
+import sys
 from collections import defaultdict
 from datetime import datetime, date
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _config as C  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG = os.path.join(ROOT, "logs", "gig-log.md")
@@ -22,6 +26,53 @@ ACTIONS = ("APPLIED", "REPLIED", "DELIVERED", "PAID", "REJECTED")
 LINE = re.compile(r'^(\d{4}-\d{2}-\d{2}).*?\b(APPLIED|REPLIED|DELIVERED|PAID|REJECTED)\b(.*)$')
 MONEY = re.compile(r'\$(\d+)')
 
+# ledger stage -> metrics action
+STAGE_ACTION = {"pitched": "APPLIED", "replied": "REPLIED", "delivered": "DELIVERED",
+                "paid": "PAID", "lost": "REJECTED"}
+
+
+def events_from_ledger():
+    """Yield (date, action, amount) from the unified ledger (all channels)."""
+    evs = []
+    for row in C.ledger_rows():
+        ts = row.get("timestamp", "")
+        try:
+            d = datetime.fromisoformat(ts.replace("Z", "+00:00")).date()
+        except Exception:
+            continue
+        action = STAGE_ACTION.get(row.get("stage", ""))
+        if not action:
+            continue
+        amt = 0
+        if action == "PAID":
+            try:
+                amt = int(row.get("price") or 0)
+            except ValueError:
+                amt = 0
+        evs.append((d, action, amt))
+    return evs
+
+
+def events_from_log():
+    evs = []
+    if not os.path.exists(LOG):
+        return evs
+    with open(LOG) as f:
+        for raw in f:
+            m = LINE.match(raw.strip())
+            if not m:
+                continue
+            try:
+                d = datetime.strptime(m.group(1), "%Y-%m-%d").date()
+            except ValueError:
+                continue
+            amt = 0
+            if m.group(2) == "PAID":
+                mm = MONEY.search(m.group(3))
+                amt = int(mm.group(1)) if mm else 0
+            evs.append((d, m.group(2), amt))
+    return evs
+
 
 def iso_week(d):
     y, w, _ = d.isocalendar()
@@ -29,33 +80,23 @@ def iso_week(d):
 
 
 def main():
-    if not os.path.exists(LOG):
-        print("No log yet at logs/gig-log.md — run the pipeline first.")
+    # Prefer the unified ledger (covers all channels); fall back to the log.
+    events = events_from_ledger() or events_from_log()
+    if not events:
+        print("No data yet — log jobs with scripts/gig.py or run the pipeline first.")
         return
 
     weeks = defaultdict(lambda: {a: 0 for a in ACTIONS} | {"paid_amount": 0})
     totals = {a: 0 for a in ACTIONS}
     total_paid = 0
 
-    with open(LOG) as f:
-        for raw in f:
-            m = LINE.match(raw.strip())
-            if not m:
-                continue
-            day, action, rest = m.group(1), m.group(2), m.group(3)
-            try:
-                d = datetime.strptime(day, "%Y-%m-%d").date()
-            except ValueError:
-                continue
-            wk = iso_week(d)
-            weeks[wk][action] += 1
-            totals[action] += 1
-            if action == "PAID":
-                mm = MONEY.search(rest)
-                if mm:
-                    amt = int(mm.group(1))
-                    weeks[wk]["paid_amount"] += amt
-                    total_paid += amt
+    for d, action, amt in events:
+        wk = iso_week(d)
+        weeks[wk][action] += 1
+        totals[action] += 1
+        if action == "PAID":
+            weeks[wk]["paid_amount"] += amt
+            total_paid += amt
 
     def rate(n, d):
         return f"{(100.0 * n / d):.0f}%" if d else "—"
