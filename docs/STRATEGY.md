@@ -79,6 +79,30 @@ logs/
 
 Or `"scan every hour"` for loop mode so you catch gigs minutes after they post.
 
+## Outbound + Inbound: the two engines
+
+The pipeline (scan/qualify/apply) is **outbound** — you chase posters, capped by reply rate. Powerful but slow at the start. The `gig-lister` skill adds the **inbound** engine — standing, productized listings (Fiverr, Craigslist *services*, Reddit `[FOR HIRE]`/`[OFFER]`) that buyers find and order on their own.
+
+Run both:
+- **Inbound** is the closest thing to passive — set the listings once, orders arrive while you sleep, no per-message ban risk. This is your best shot at a first sale in the opening days.
+- **Outbound** fills the gaps and catches fresh high-value gigs early.
+
+Fastest realistic path to a first dollar:
+1. `create listings` → post the Fiverr gig + one Reddit `[FOR HIRE]` today.
+2. Price the Basic tier low until you have 3-5 reviews.
+3. Run the outbound pipeline daily on top.
+4. Deliver fast, ask every happy client for a review.
+
+## Why "more volume = guaranteed money" is a trap
+
+More cold applications feels like more income. It isn't. Past the daily caps, extra volume just raises your odds of a spam flag or a ban — and a banned account earns nothing, forever. The way to scale shots-on-goal safely is **more channels (inbound + outbound), not more blasts per channel.** That's why the system adds platforms instead of removing the pacing limits.
+
+## What this is NOT
+
+- Not passive income you can ignore — a human posts listings, handles orders, sends work, collects payment, does quality control.
+- Not guaranteed day-one money — day one/week one realistically buys you reviews; reviews buy you the income.
+- Not safe to run with multiple accounts, fake reviews, or scripted posting to Fiverr/Reddit — any of those gets the whole operation banned.
+
 ## Bottom line
 
-It works if you run it like a real micro-business: be early, prove value, deliver genuinely good work, collect reviews, and let the pacing rules protect your accounts. It does not work as a get-rich button. Set expectations at "useful side income that grows," and you won't be disappointed.
+It works if you run it like a real micro-business: stand up inbound listings, run outbound daily, be early, prove value, deliver genuinely good work, collect reviews, and let the pacing rules protect your accounts. It is not a get-rich button and it is not passive. Set expectations at "useful side income that compounds with reviews," and it delivers.
