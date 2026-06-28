@@ -1,0 +1,14 @@
+{
+  "cities": ["boston", "newyork", "chicago", "losangeles", "sfbay", "seattle", "austin", "denver", "atlanta", "miami"],
+  "min_price": 25,
+  "max_age_hours": 24,
+  "categories": ["wrg", "crg", "cpg"],
+  "smtp": {
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "username": "your@gmail.com",
+    "password": "your-gmail-app-password",
+    "from_email": "your@gmail.com",
+    "from_name": "Cole"
+  }
+}
