@@ -17,9 +17,13 @@ For each service the user can deliver (writing, copy, logos, social, etc.), gene
 
 The user posts these manually (these platforms ban scripted posting — see Guardrails). Set-once, inbound-forever.
 
+## Source of truth: the catalog
+
+Pull lanes, deliverables, pricing tiers, and keywords from `gigs/catalog.json` — it's the single source of truth for what this business offers (19 lanes and counting). Don't hardcode services here; read the catalog and build listings for whichever lanes the operator is currently pushing. Adding a new lane to the catalog automatically makes it listable.
+
 ## Productize first
 
-Inbound only works if the offer is a concrete product with a price, not "I do writing." Define tight packages. Defaults (tune to `identity` and local rates):
+Inbound only works if the offer is a concrete product with a price, not "I do writing." Define tight packages from the catalog's `pricing` tiers (tune to `identity` and local rates):
 
 | Product | Basic | Standard | Premium |
 |---|---|---|---|

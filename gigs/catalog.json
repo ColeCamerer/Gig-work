@@ -1,0 +1,183 @@
+{
+  "_about": "Service catalog — the single source of truth for what lanes this business offers. Scanner keywords, qualifier subtypes, lister packages, and fulfiller paths all derive from here. Add a lane = add an entry; the operator expands this as learn.py reveals what converts. Only lanes that are genuinely AI-deliverable at quality, have real buyer demand, and carry no credential/legal risk belong here.",
+
+  "text": {
+    "BLOG_POST": {
+      "deliverable": "blog post / article",
+      "default": "600 words, H2 subheads, conversational",
+      "keywords": ["blog", "article", "content", "write", "post", "ghostwrite"],
+      "pricing": {"basic": 35, "standard": 90, "premium": 175},
+      "inputs": ["topic", "tone", "audience", "keywords"],
+      "fulfill": "text",
+      "demand": "high"
+    },
+    "WEB_COPY": {
+      "deliverable": "website copy (landing/about/home)",
+      "default": "1 page, benefit-led, clear CTA",
+      "keywords": ["website", "landing page", "web copy", "homepage", "about page", "sales page"],
+      "pricing": {"basic": 45, "standard": 110, "premium": 220},
+      "inputs": ["business", "offer", "audience", "tone", "page goal"],
+      "fulfill": "text",
+      "demand": "high"
+    },
+    "PRODUCT_COPY": {
+      "deliverable": "product descriptions",
+      "default": "~100 words each, feature→benefit, soft CTA",
+      "keywords": ["product description", "etsy", "amazon listing", "shopify", "ecommerce copy"],
+      "pricing": {"basic": 40, "standard": 70, "premium": 130},
+      "inputs": ["product names", "features", "tone", "keywords"],
+      "fulfill": "text",
+      "demand": "high"
+    },
+    "RESUME_LINKEDIN": {
+      "deliverable": "resume rewrite + LinkedIn summary",
+      "default": "1-2 page resume, ATS-friendly, quantified bullets, + LinkedIn About",
+      "keywords": ["resume", "cv", "linkedin", "cover letter", "resume writer"],
+      "pricing": {"basic": 50, "standard": 110, "premium": 175},
+      "inputs": ["current resume or work history", "target role", "industry"],
+      "fulfill": "text",
+      "demand": "very high",
+      "note": "Top earner per pitch — high demand, high price, pure text. Do NOT fabricate credentials/experience; only rewrite what the client provides."
+    },
+    "AD_COPY": {
+      "deliverable": "ad copy (Google / Facebook / Instagram)",
+      "default": "5-10 variations, hook + body + CTA, char-limit aware",
+      "keywords": ["ad copy", "facebook ads", "google ads", "ppc copy", "ad creative copy"],
+      "pricing": {"basic": 40, "standard": 90, "premium": 160},
+      "inputs": ["product", "audience", "offer", "platform"],
+      "fulfill": "text",
+      "demand": "high"
+    },
+    "EMAIL_COPY": {
+      "deliverable": "email sequence / newsletter",
+      "default": "~200 words each, subject line + one CTA",
+      "keywords": ["email", "newsletter", "email sequence", "drip campaign", "welcome series"],
+      "pricing": {"basic": 40, "standard": 95, "premium": 160},
+      "inputs": ["product/service", "audience", "goal", "number of emails"],
+      "fulfill": "text",
+      "demand": "high"
+    },
+    "SOCIAL_CONTENT": {
+      "deliverable": "social captions / posts",
+      "default": "10 captions, platform-appropriate, 2-4 hashtags",
+      "keywords": ["caption", "social media", "instagram", "content calendar", "social posts"],
+      "pricing": {"basic": 35, "standard": 60, "premium": 90},
+      "inputs": ["niche", "tone", "platform", "number"],
+      "fulfill": "text",
+      "demand": "high"
+    },
+    "SEO_META": {
+      "deliverable": "SEO titles + meta descriptions",
+      "default": "set of titles/metas, char-limit aware, keyword-targeted",
+      "keywords": ["seo", "meta description", "title tags", "on-page seo"],
+      "pricing": {"basic": 30, "standard": 55, "premium": 100},
+      "inputs": ["pages/URLs", "target keywords"],
+      "fulfill": "text",
+      "demand": "medium"
+    },
+    "SCRIPT": {
+      "deliverable": "video / YouTube / ad script",
+      "default": "~150 words per video minute, hook in 5s",
+      "keywords": ["script", "video script", "youtube", "vsl", "podcast script", "voiceover"],
+      "pricing": {"basic": 40, "standard": 90, "premium": 160},
+      "inputs": ["topic", "length", "tone", "platform"],
+      "fulfill": "text",
+      "demand": "medium"
+    },
+    "EBOOK_LEADMAGNET": {
+      "deliverable": "ebook / lead magnet / guide",
+      "default": "structured guide, chapters/sections, formatted",
+      "keywords": ["ebook", "lead magnet", "guide", "whitepaper", "how-to guide"],
+      "pricing": {"basic": 100, "standard": 200, "premium": 350},
+      "inputs": ["topic", "audience", "length", "outline if any"],
+      "fulfill": "text",
+      "demand": "medium",
+      "note": "Higher ticket — quote per length. Big reputation upside if done well."
+    },
+    "PROOFREAD_EDIT": {
+      "deliverable": "proofreading / line editing",
+      "default": "grammar, clarity, flow; tracked changes summary",
+      "keywords": ["proofread", "edit", "editing", "copyedit", "grammar"],
+      "pricing": {"basic": 25, "standard": 55, "premium": 100},
+      "inputs": ["the document", "level of edit wanted"],
+      "fulfill": "text",
+      "demand": "medium"
+    },
+    "NAMING_TAGLINE": {
+      "deliverable": "business names / slogans / taglines",
+      "default": "10-20 name or tagline options + rationale",
+      "keywords": ["business name", "slogan", "tagline", "brand name", "naming"],
+      "pricing": {"basic": 25, "standard": 45, "premium": 75},
+      "inputs": ["business type", "vibe", "keywords to include/avoid"],
+      "fulfill": "text",
+      "demand": "medium",
+      "note": "Fast, cheap, high-volume — good for racking up first reviews quickly."
+    }
+  },
+
+  "design": {
+    "LOGO": {
+      "deliverable": "logo concept",
+      "default": "1 mark, no text baked in, PNG + transparent",
+      "keywords": ["logo", "brand mark", "logo design"],
+      "pricing": {"basic": 45, "standard": 90, "premium": 175},
+      "inputs": ["business name", "industry", "style", "colors"],
+      "fulfill": "design",
+      "demand": "very high"
+    },
+    "BRAND_KIT": {
+      "deliverable": "mini brand kit",
+      "default": "logo + palette + font picks + usage guide",
+      "keywords": ["brand", "branding", "brand kit", "brand identity"],
+      "pricing": {"basic": 120, "standard": 220, "premium": 350},
+      "inputs": ["business name", "industry", "style", "colors"],
+      "fulfill": "design",
+      "demand": "medium"
+    },
+    "SOCIAL_GRAPHIC": {
+      "deliverable": "social graphic / thumbnail",
+      "default": "square or 16:9, text overlay area, on-brand",
+      "keywords": ["instagram post", "thumbnail", "social graphic", "banner", "youtube thumbnail"],
+      "pricing": {"basic": 30, "standard": 60, "premium": 100},
+      "inputs": ["text/message", "dimensions", "style", "colors"],
+      "fulfill": "design",
+      "demand": "high"
+    },
+    "FLYER": {
+      "deliverable": "event/promo flyer",
+      "default": "8.5x11, image generated text-free, text added in editor",
+      "keywords": ["flyer", "poster", "promo", "event flyer"],
+      "pricing": {"basic": 50, "standard": 80, "premium": 120},
+      "inputs": ["event details", "style", "colors"],
+      "fulfill": "design",
+      "demand": "medium"
+    },
+    "BUSINESS_CARD": {
+      "deliverable": "business card design",
+      "default": "horizontal, minimal, print-ready spec",
+      "keywords": ["business card", "name card"],
+      "pricing": {"basic": 40, "standard": 70, "premium": 110},
+      "inputs": ["name", "title", "contact", "style"],
+      "fulfill": "design",
+      "demand": "medium"
+    },
+    "BOOK_COVER": {
+      "deliverable": "ebook / book cover",
+      "default": "front cover, genre-appropriate, title added in editor",
+      "keywords": ["book cover", "ebook cover", "kindle cover"],
+      "pricing": {"basic": 60, "standard": 120, "premium": 200},
+      "inputs": ["title", "author", "genre", "mood"],
+      "fulfill": "design",
+      "demand": "medium"
+    },
+    "MERCH_DESIGN": {
+      "deliverable": "t-shirt / merch / POD design",
+      "default": "print-ready graphic, transparent bg",
+      "keywords": ["t-shirt design", "merch", "print on demand", "sticker design", "apparel"],
+      "pricing": {"basic": 40, "standard": 80, "premium": 140},
+      "inputs": ["concept", "style", "colors", "placement"],
+      "fulfill": "design",
+      "demand": "high"
+    }
+  }
+}

@@ -7,6 +7,10 @@ description: Run the gig business as an adaptive operator — execute the full p
 
 You are not a button-pusher running steps in order — you are the operator of a small business with one mandate: **earn more this week than last week, without getting any account banned.** You execute, then you learn, then you change the plan based on what the numbers say. That feedback loop is the whole point of this skill; without it, the pipeline just repeats the same guesses forever.
 
+## Source of truth
+
+`gigs/catalog.json` defines every service lane (deliverable, pricing, keywords, fulfillment path). It's how the business expands beyond a couple of lanes — when `learn.py` shows demand or a gap, add a lane to the catalog and the scanner/qualifier/lister/fulfiller pick it up. You are expected to grow and prune this catalog based on what converts.
+
 ## The loop (every cycle)
 
 ```
